@@ -42,12 +42,18 @@ spring:
     password: 1234
     driver-class-name: org.h2.Driver
 
+
   jpa:
     open-in-view: false
     hibernate:
       ddl-auto: create
     properties:
       hibernate:
+        generate_statistics: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
         default_batch_fetch_size: 100
 #        show_sql: true
 #        format_sql: true
@@ -103,13 +109,28 @@ spring:
 
 logging:
   level:
-    com.patrol: DEBUG
-    org.hibernate.SQL: ERROR  # SQL 로그는 너무 많으므로 ERROR 유지
-    org.apache.kafka.clients: ERROR  # Kafka 전체를 INFO로 조절
-    org.apache.kafka.clients.consumer: ERROR  # 필요한 경우만 DEBUG 유지
-    org.apache.kafka.clients.producer: ERROR
-    springframework:
-      kafka: ERROR  # Spring Kafka 로그도 INFO로 조절
+#    com.patrol: DEBUG
+#    org.hibernate.SQL: ERROR  # SQL 로그는 너무 많으므로 ERROR 유지
+#    org.apache.kafka.clients: ERROR  # Kafka 전체를 INFO로 조절
+#    org.apache.kafka.clients.consumer: ERROR  # 필요한 경우만 DEBUG 유지
+#    org.apache.kafka.clients.producer: ERROR
+#    springframework:
+#      kafka: ERROR  # Spring Kafka 로그도 INFO로 조절
+    root: OFF
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    API_LOGGER: INFO
+  file:
+    name: logs/hibernate.log
+  pattern:
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} | Level: %5p | Thread: %thread | Logger: %-40.40logger{39} | Message: %m%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+
 
 
 springdoc:

@@ -86,6 +86,9 @@ dependencies {
     implementation("com.google.firebase:firebase-admin:7.1.1")
 
     implementation ("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2")
+
+    // P6Spy
+    implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
 }
 
 tasks.withType<Test> {

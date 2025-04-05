@@ -31,6 +31,7 @@ public class ApiV1ProtectionController {
   private final ProtectionService protectionService;
   private final ObjectMapper objectMapper;
 
+
   @GetMapping
   @Operation(summary = "임시보호/입양 대기 중인 동물 목록")
   public RsData<Page<AnimalCaseListResponse>> getPossibleProtections(

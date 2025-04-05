@@ -1,0 +1,156 @@
+[
+  {
+    "api_path": "GET /api/v1/facilities",
+    "calls_analyzed": 1,
+    "n_plus_1_score": 72,
+    "n_plus_1_likelihood": "높음",
+    "avg_execution_time": 204.0,
+    "avg_query_count": {
+      "hibernate": 3.0,
+      "spy": 18.0,
+      "ratio": 6.0
+    },
+    "avg_connections": 4.0,
+    "max_table_accesses": 6,
+    "repeated_tables": [
+      {
+        "table": "protections",
+        "count": 6
+      },
+      {
+        "table": "animal_cases",
+        "count": 6
+      }
+    ],
+    "query_complexity": {
+      "avg_complexity": 2.0555555555555554,
+      "join_percentage": 44.44444444444444,
+      "subquery_percentage": 0.0,
+      "complex_queries": []
+    },
+    "evidence": [
+      "P6Spy/Hibernate 쿼리 비율: 6.0 (> 2.0)",
+      "다중 연결 사용: 4개의 연결",
+      "반복적인 테이블 접근: protections (6회), animal_cases (6회)",
+      "반복적 쿼리 패턴: 유사한 WHERE 조건 4회 반복"
+    ]
+  },
+  {
+    "api_path": "GET /api/v1/facilities/shelters",
+    "calls_analyzed": 1,
+    "n_plus_1_score": 62,
+    "n_plus_1_likelihood": "높음",
+    "avg_execution_time": 25.0,
+    "avg_query_count": {
+      "hibernate": 2.0,
+      "spy": 10.0,
+      "ratio": 5.0
+    },
+    "avg_connections": 4.0,
+    "max_table_accesses": 4,
+    "repeated_tables": [],
+    "query_complexity": {
+      "avg_complexity": 2.2,
+      "join_percentage": 60.0,
+      "subquery_percentage": 0.0,
+      "complex_queries": []
+    },
+    "evidence": [
+      "P6Spy/Hibernate 쿼리 비율: 5.0 (> 2.0)",
+      "다중 연결 사용: 4개의 연결",
+      "반복적 쿼리 패턴: 유사한 WHERE 조건 4회 반복"
+    ]
+  },
+  {
+    "api_path": "GET /api/v1/animal-cases/2",
+    "calls_analyzed": 1,
+    "n_plus_1_score": 55,
+    "n_plus_1_likelihood": "높음",
+    "avg_execution_time": 12.0,
+    "avg_query_count": {
+      "hibernate": 3.0,
+      "spy": 12.0,
+      "ratio": 4.0
+    },
+    "avg_connections": 3.0,
+    "max_table_accesses": 6,
+    "repeated_tables": [
+      {
+        "table": "animal_cases",
+        "count": 6
+      }
+    ],
+    "query_complexity": {
+      "avg_complexity": 2.1666666666666665,
+      "join_percentage": 50.0,
+      "subquery_percentage": 0.0,
+      "complex_queries": [
+        {
+          "sql": "select ac1_0.id,a1_0.id,a1_0.animal_type,a1_0.breed,a1_0.created_at,a1_0.estimated_age,a1_0.feature,a1_0.gender,a1_0.health_condition,a1_0.image_url,a1_0.is_lost,a1_0.modified_at,a1_0.name,a1_0.owner_id,a1_0.registration_no,a1_0.size,ac1_0.created_at,cf1_0.id,cf1_0.address,cf1_0.api_key,cf1_0.birth_date,cf1_0.created_at,cf1_0.email,cf1_0.gender,cf1_0.login_type,cf1_0.marketing_agree,cf1_0.modified_at,cf1_0.nickname,cf1_0.password,cf1_0.phone_number,cf1_0.profile_image_url,cf1_0.role,cf1_0.status,ac1_0.deleted_at,ac1_0.description,h1_0.animal_case_id,h1_0.id,h1_0.content_id,h1_0.content_type,h1_0.created_at,h1_0.deleted_at,h1_0.history_status,h1_0.member_id,h1_0.modified_at,ac1_0.location,ac1_0.modified_at,ac1_0.shelter_id,ac1_0.status,ac1_0.title from animal_cases ac1_0 left join animals a1_0 on a1_0.id=ac1_0.animal_id left join members cf1_0 on cf1_0.id=ac1_0.current_foster_id left join case_histories h1_0 on ac1_0.id=h1_0.animal_case_id where ac1_0.id=?",
+          "complexity": 4.0,
+          "execution_time": 1
+        },
+        {
+          "sql": "select ac1_0.id,a1_0.id,a1_0.animal_type,a1_0.breed,a1_0.created_at,a1_0.estimated_age,a1_0.feature,a1_0.gender,a1_0.health_condition,a1_0.image_url,a1_0.is_lost,a1_0.modified_at,a1_0.name,a1_0.owner_id,a1_0.registration_no,a1_0.size,ac1_0.created_at,cf1_0.id,cf1_0.address,cf1_0.api_key,cf1_0.birth_date,cf1_0.created_at,cf1_0.email,cf1_0.gender,cf1_0.login_type,cf1_0.marketing_agree,cf1_0.modified_at,cf1_0.nickname,cf1_0.password,cf1_0.phone_number,cf1_0.profile_image_url,cf1_0.role,cf1_0.status,ac1_0.deleted_at,ac1_0.description,h1_0.animal_case_id,h1_0.id,h1_0.content_id,h1_0.content_type,h1_0.created_at,h1_0.deleted_at,h1_0.history_status,h1_0.member_id,h1_0.modified_at,ac1_0.location,ac1_0.modified_at,ac1_0.shelter_id,ac1_0.status,ac1_0.title from animal_cases ac1_0 left join animals a1_0 on a1_0.id=ac1_0.animal_id left join members cf1_0 on cf1_0.id=ac1_0.current_foster_id left join case_histories h1_0 on ac1_0.id=h1_0.animal_case_id where ac1_0.id=?",
+          "complexity": 4.0,
+          "execution_time": 1
+        }
+      ]
+    },
+    "evidence": [
+      "P6Spy/Hibernate 쿼리 비율: 4.0 (> 2.0)",
+      "다중 연결 사용: 3개의 연결",
+      "반복적인 테이블 접근: animal_cases (6회)"
+    ]
+  },
+  {
+    "api_path": "GET /api/v1/facilities/hospitals",
+    "calls_analyzed": 1,
+    "n_plus_1_score": 50,
+    "n_plus_1_likelihood": "높음",
+    "avg_execution_time": 142.0,
+    "avg_query_count": {
+      "hibernate": 1.0,
+      "spy": 6.0,
+      "ratio": 6.0
+    },
+    "avg_connections": 3.0,
+    "max_table_accesses": 2,
+    "repeated_tables": [],
+    "query_complexity": {
+      "avg_complexity": 2.3333333333333335,
+      "join_percentage": 66.66666666666666,
+      "subquery_percentage": 0.0,
+      "complex_queries": []
+    },
+    "evidence": [
+      "P6Spy/Hibernate 쿼리 비율: 6.0 (> 2.0)",
+      "다중 연결 사용: 3개의 연결"
+    ]
+  },
+  {
+    "api_path": "GET /api/v1/animal-cases",
+    "calls_analyzed": 1,
+    "n_plus_1_score": 50,
+    "n_plus_1_likelihood": "높음",
+    "avg_execution_time": 12.0,
+    "avg_query_count": {
+      "hibernate": 3.0,
+      "spy": 8.0,
+      "ratio": 2.6666666666666665
+    },
+    "avg_connections": 3.0,
+    "max_table_accesses": 4,
+    "repeated_tables": [],
+    "query_complexity": {
+      "avg_complexity": 1.5,
+      "join_percentage": 25.0,
+      "subquery_percentage": 0.0,
+      "complex_queries": []
+    },
+    "evidence": [
+      "P6Spy/Hibernate 쿼리 비율: 2.7 (> 2.0)",
+      "다중 연결 사용: 3개의 연결"
+    ]
+  }
+]

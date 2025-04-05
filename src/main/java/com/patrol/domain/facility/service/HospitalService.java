@@ -34,7 +34,6 @@ public class HospitalService implements FacilityService {
   private static final String HOSPITALS_CACHE_KEY = "hospitals:lat:%s:lng:%s:radius:%s";
   private static final long CACHE_TTL_MINUTES = 60;
 
-
   @PostConstruct
   @Transactional
   public void loadData() {

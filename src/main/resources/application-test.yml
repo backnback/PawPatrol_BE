@@ -1,16 +1,33 @@
 spring:
+  output:
+    ansi:
+      enabled: always
   datasource:
-    url: jdbc:h2:mem:testdb;MODE=MySQL
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    url: jdbc:p6spy:mysql://127.0.0.1:3306/pawpatrol_test_db?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            redirect-uri: "${custom.dev.backUrl}/login/oauth2/code/{registrationId}"
+          google:
+            redirect-uri: "${custom.dev.backUrl}/login/oauth2/code/{registrationId}"
+          naver:
+            redirect-uri: "${custom.dev.backUrl}/login/oauth2/code/{registrationId}"
   jpa:
-    hibernate:
-      ddl-auto: create
     properties:
       hibernate:
-        format_sql: true
-        show_sql: true
-  sql:
-    init:
-      mode: never
+        hbm2ddl.auto: create-drop
+
+custom:
+  oauth2:
+    redirect-uri: http://localhost:5173/connect
+  auth:
+    redirect-uri: http://localhost:5173/login-pet
